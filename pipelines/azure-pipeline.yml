@@ -1,11 +1,29 @@
-trigger: 
+trigger:
 - main
 
 pool:
   vmImage: "ubuntu-latest"
 
+resources:
+  repositories:
+    - repository: policy-repo
+      type: github
+      name: chloe-teo/policy-repo
+      endpoint: chloe-teo
+
 steps:
+  - checkout: self
+  - checkout: policy-repo
+
+  - script: |
+      ls -al $(Build.SourcesDirectory)
+    displayName: 'List files in the source directory'
+
   - task: KubeDockSecurityScan@0
     displayName: 'Run KubeDock Security Scan'
     inputs:
       repoPath: '$(Build.SourcesDirectory)'
+      policyRepoPath: '$(Build.SourcesDirectory)/policy-repo'
+      helmFolderPath: '$(Build.SourcesDirectory)/helm/myapp'
+      helmValuesFile: "$(Build.SourcesDirectory)/helm/myapp/values.yaml,$(Build.SourcesDirectory)/helm/myapp/values-dev.yaml"
+      helmTemplatesPath: '$(Build.SourcesDirectory)/templates'
