@@ -22,8 +22,8 @@ steps:
   - task: KubeDockSecurityScan@0
     displayName: 'Run KubeDock Security Scan'
     inputs:
-      repoPath: '$(Build.SourcesDirectory)'
+      repoPath: '$(Build.SourcesDirectory)/sample-manifests'
       policyRepoPath: '$(Build.SourcesDirectory)/policy-repo'
-      helmFolderPath: '$(Build.SourcesDirectory)/helm/myapp'
-      helmValuesFile: "$(Build.SourcesDirectory)/helm/myapp/values.yaml,$(Build.SourcesDirectory)/helm/myapp/values-dev.yaml"
-      helmTemplatesPath: '$(Build.SourcesDirectory)/templates'
+      helmFolderPath: '$(Build.SourcesDirectory)/sample-manifests/helm/myapp'
+      helmValuesFile: "$(Build.SourcesDirectory)/sample-manifests/helm/myapp/values.yaml,$(Build.SourcesDirectory)/helm/myapp/values-dev.yaml"
+      helmTemplatesPath: '$(Build.SourcesDirectory)/sample-manifests/templates'
