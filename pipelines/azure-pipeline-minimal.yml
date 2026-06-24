@@ -1,0 +1,10 @@
+trigger:
+- main
+
+pool:
+  vmImage: "ubuntu-latest"
+steps:
+  - task: KubeDockSecurityScan@0
+    displayName: 'Run KubeDock Security Scan'
+    inputs:
+      repoPath: '$(Build.SourcesDirectory)'
