@@ -1,6 +1,9 @@
 trigger:
 - main
 
+variables:
+  group: sample-manifests
+
 pool:
   vmImage: "ubuntu-latest"
 
@@ -27,3 +30,6 @@ steps:
       helmFolderPath: '$(Build.SourcesDirectory)/sample-manifests/helm/myapp'
       helmValuesFile: "$(Build.SourcesDirectory)/sample-manifests/helm/myapp/values.yaml,$(Build.SourcesDirectory)/helm/myapp/values-dev.yaml"
       helmTemplatesPath: '$(Build.SourcesDirectory)/sample-manifests/templates'
+    env:
+      OTEL_EXPORTER_OTLP_ENDPOINT: $(OTEL_EXPORTER_OTLP_ENDPOINT)
+      OTEL_EXPORTER_OTLP_HEADERS: $(OTEL_EXPORTER_OTLP_HEADERS)
