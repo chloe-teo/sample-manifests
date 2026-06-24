@@ -2,7 +2,7 @@ trigger:
 - main
 
 variables:
-  group: sample-manifests
+  - group: sample-manifests
 
 pool:
   vmImage: "ubuntu-latest"
